@@ -154,10 +154,10 @@ class mapWorks{
 	 <div><input name="state" id="state" value="<?php if($edits){print $edits[0]['state'];}?>"></div>
 	 <div>Country</div>
 	 <div><input name="country" id="country" value="<?php if($edits){print $edits[0]['country'];}?>"></div>
-	<div>Latitude</div>
+	<!--<div>Latitude</div>
 	<div><input name="lat" id="lat" value="<?php if($edits){print $edits[0]['latitude'];}?>"></div>
 	 <div>Longitude</div>
-	 <div><input name="long" id="long" value="<?php if($edits){print $edits[0]['longitude'];}?>"></div>
+	 <div><input name="long" id="long" value="<?php if($edits){print $edits[0]['longitude'];}?>"></div> -->
          <input id="eid" type="hidden" name="eid" value="<?php print $eid; ?>">
 	 <div><input name="save" id="save" type="submit" value="Save locations"></div>																																
 	 </div>
@@ -375,4 +375,85 @@ function mapWorks_head_scripts(){
 <?php
 }
 add_action('wp_head','mapWorks_head_scripts');
+
+
+function mapworksshort($atts){
+
+$atts = shortcode_atts(array(
+		'stext' => ''
+	),$atts,'mapworks');
+
+$stext=$atts['stext'];
+
+ob_start();
+
+$options = get_option('plugin_options');
+
+if(!$options['allow_default_front']){
+  return '';
+}
+
+
+global $wpdb;
+$table_name = $wpdb->prefix . 'mapworks_tbl';
+
+if($stext!=''){
+$results=$wpdb->get_results("SELECT * FROM ".$table_name." WHERE street LIKE '%$stext%'",ARRAY_A);
+} else {
+$results=$wpdb->get_results("SELECT * FROM ".$table_name,ARRAY_A);
+}
+
+foreach($results as $row){
+?>
+<style>
+ .wrap_mapworks{
+    margin-left:10px;	
+ }
+</style>
+<div class='wrap_mapworks'>
+<div>Name: <?php print $row['yourname'];?></div>
+<div>Address:<br/><?php print $row['street'].'<br>'.$row['city'].'<br>'.$row['state'].'<br>'.$row['country'];?></div>
+<div>Lat: <?php print $row['latitude'];?></div>
+<div>Long: <?php print $row['longitude'];?></div>
+<div style="width:300px;height:300px;border:1px solid red;margin:0 auto;" id="map-canvas_<?php print $row['id'];?>"></div>
+<div id="pano_<?php print $row['id'];?>"></div>
+
+<script>
+function initialize_<?php print $row['id'];?>() {
+  var fenway_<?php print $row['id'];?> = new google.maps.LatLng(<?php print $row['latitude'];?>, <?php print $row['longitude'];?>);
+  var mapOptions_<?php print $row['id'];?> = {
+    center: fenway_<?php print $row['id'];?>,
+    zoom: 14
+  };
+  var map_<?php print $row['id'];?> = new google.maps.Map(
+      document.getElementById('map-canvas_<?php print $row[id];?>'), mapOptions_<?php print $row['id'];?>);
+  var panoramaOptions_<?php print $row['id'];?> = {
+    position: fenway_<?php print $row['id'];?>,
+    pov: {
+      heading: 34,
+      pitch: 10
+    }
+  };
+
+   var panorama_<?php print $row['id'];?> = new google.maps.StreetViewPanorama(document.getElementById('pano_<?php print $row[id];?>'), panoramaOptions_<?php print $row['id'];?>);
+   map_<?php print $row['id'];?>.setStreetView(panorama_<?php print $row['id'];?>);
+}
+
+// google.maps.event.addDomListener(window, 'load', initialize);
+jQuery(document).ready(function(){
+initialize_<?php print $row['id'];?>();
+})
+</script>
+</div>
+<?php
+}
+
+$out2 = ob_get_contents();
+
+ob_end_clean();
+return $out2; 
+
+}
+
+add_shortcode('mapworks', 'mapworksshort');
 ?>
