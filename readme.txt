@@ -1,7 +1,9 @@
 === Mapworks ===
+Plugin: Mapworks
 Contributors: Prakash
 Tags: business locations, admin, dealer locator, dealer locater,  post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, locator map
 Requires at least: 3.3
+Donate link: http://www.ifyouknowit.com/
 
 A WordPress-integrated map & location management interface. Quickly create street locator maps
 
