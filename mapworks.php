@@ -2,10 +2,12 @@
 /**
 Plugin Name: map works
 Plugin URI: http://www.ifyouknowit.com/
-Description: This plugin will keep a database of entities and search them provide map on front end. 
+Description: This plugin will keep a database of entities and search them provide map on front end. want professional version check <a href="http://magento.ifyouknowit.com">Go pro</a>
 Author: ifyouknowit.com
 Version: 1.0
 Author URI: http://www.ifyouknowit.com/
+
+Donate link: http://www.ifyouknowit.com/
 */
 class mapWorks{
   

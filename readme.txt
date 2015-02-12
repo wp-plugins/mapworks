@@ -11,6 +11,7 @@ A WordPress-integrated map & location management interface. Quickly create stree
 Power your site with this WordPress-integrated map making & location management system possessing mapping tools to create store locators, store finders, and other location address maps. Manage and display a few or thousands of your important stores, points of interest, or product locations anywhere on Earth using Google Maps. 
 Its strength is best seen in its flexibility to allow you to easily manage any number of locations from your WordPress admin interface and the several addons featuring top-level features that are available to further boost its capabilities. Also referred to as an address map, address location map, locator map, store finder, dealer locator (locater), shop finder. 
 mapwidget allow you to search any location from front end.
+want professional version check <a href="http://magento.ifyouknowit.com">Go pro</a>
 
 Example usage:
 

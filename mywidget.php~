@@ -1,4 +1,8 @@
 <?php
+/**
+Plugin name: mapwidget
+Description: This plugin will keep a database of entities and search them provide map on front end. want professional version check <a href="magento.ifyouknowit.com">Go pro</a> 
+*/
 class map_widget extends WP_Widget {
         
         public function __construct() {
